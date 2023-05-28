@@ -1,0 +1,22 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block title %}Edit Word{% endblock %}
+{% block content%}
+    <form action="{{ url_for('edit') }}" method="POST">
+        <p>Origin word: {{word.english}}</p>
+        <input name="english" value= {{word.english}} type="text" required>
+        <p>Origin Chinese:{{word.chinese}}</p>
+        <input name="chinese" value= {{word.chinese}} type="text" required>
+        <input hidden="hidden" name="id" value="{{word.id}}">
+        <p>Origin meaning or delet the meaning</p>
+        <input name="english_meaning" type="text" value="{{word.english_meaning}}">
+        <button type="submit">Comfirm</button>
+    </form>
+{%endblock%}

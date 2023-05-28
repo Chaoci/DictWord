@@ -1,0 +1,22 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block title %}Add Word{% endblock %}
+
+{%block content%}
+    <form action="{{ url_for('add') }}" method="POST" class="add_word_style">
+        <label>Word</label>
+        <input name="english" type="text" required> <br>
+        <label>中文意思</label>
+        <input name="chinese" type="text" required> <br>
+        <label>英文解釋</label>
+        <input name="english_meaning" type="text"> <br>
+        <button type="submit">Add word</button>
+    </form>
+{%endblock%}

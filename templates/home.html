@@ -1,0 +1,39 @@
+
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block title %}My Vocabulary{% endblock %}
+
+
+{%block content%}
+<h1>My Vocabulary</h1>
+    {% if words == []: %}
+    <p>Library is empty.</p>
+    {% endif %}
+    <p class="for_subtitle">Current <span class="total_words">{{total}}</span> words in the database <br>
+        <a href="{{url_for('search')}}">Search Word</a></p>
+<div class="word_list">
+    <ul>
+        {% for word in words %}
+        <li class="vocabulary_box">
+            <span class="word_deco">{{word.english}}</span> {{word.chinese}} - {{word.date_added.year}}/{{word.date_added.month}}/{{word.date_added.day}} <br>
+            {% if word.english_meaning != null: %}
+            {{word.english_meaning}}
+            {% endif %}
+            <div class="function">
+                <a href="{{ url_for('edit', id=word.id) }}">Edit Word</a><br>
+                <a href="{{ url_for('delete', id=word.id) }}">Delete</a>
+            </div>
+            <div class="line"></div>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add') }}" class="add_button">Add New Word</a>
+</div>
+{%endblock%}
